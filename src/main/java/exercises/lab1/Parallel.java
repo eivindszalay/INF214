@@ -1,7 +1,5 @@
 package exercises.lab1;
 
-import org.jaxen.function.StringFunction;
-
 import java.util.concurrent.Callable;
 
 public class Parallel<V,E> {
