@@ -19,6 +19,13 @@ public class Sem {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Sem{" +
+                "permits=" + permits +
+                '}';
+    }
+
     public synchronized void release() {
         // TODO: Your solution goes here.
         permits++;

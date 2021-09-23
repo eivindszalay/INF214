@@ -10,7 +10,7 @@
 
 **Task 1B**
 
-Spørsmål: Burde vi heller bruke P og V på semaforen?
+Spørsmål: Istedenfor å in- og dekrementere, burde vi heller bruke P og V på semaforen?
 
 
     printer() {
