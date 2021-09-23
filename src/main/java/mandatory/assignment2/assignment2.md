@@ -31,3 +31,11 @@ sem2 = sem2 + 1;
     sem3 = sem3 + 1;
     }
 }
+
+**Task 4A**
+
+*CyclicBarrier* is a Java class for creating barriers when a program needs to wait for all threads to finish. 
+It is made for programs with a fixed number of threads, like in this one, where every thread need to execute before the program continues.
+It is prefixed with Cyclic to indicated that the barrier can be reused after releasing the threads.
+
+*BrokenBarrierException* is thrown when a thread tries to wait upon a barrier that is in a broken state. 
