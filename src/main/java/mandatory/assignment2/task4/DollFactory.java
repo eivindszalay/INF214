@@ -1,4 +1,4 @@
-package main.java.mandatory.assignment2.task4;//////////////////////////////////////////
+package mandatory.assignment2.task4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,6 @@ class DollFactory {
         stageA = new CyclicBarrier(dollsNumber);
         stageB = new CyclicBarrier(dollsNumber);
 
-        // ---------> TODO: stageC = new CyclicBarrier(...); <---------
         //The number of parties waiting for this barrier is 1 more than the other ones
         //since the "main thread" also needs to wait.
         stageC = new CyclicBarrier(dollsNumber+1);
@@ -22,16 +21,13 @@ class DollFactory {
         for (int i = 0; i < dollsNumber; i++) {
             Process task = new Process(i);
 
-            // ---------> TODO: Your solution goes here <---------
             Thread dollMakingThread = new Thread(task);
             dollMakingThread.start();
         }
 
         try {
-            stageC.await();
+            stageC.await(); // the main process waits for all the doll building processes to finish execution.
             System.out.println("Packaging process D");
-
-            // ---------> TODO: print results <--------
             System.out.printf("%d/%d dolls met the quality requirements.%n", dolls.size(), dollsNumber);
         }
         catch (BrokenBarrierException e) {
@@ -55,11 +51,10 @@ class DollFactory {
 
         public void run() {
 
-            // ---------> TODO: Your solution goes here <---------
             // Stage A
             Doll doll = this.assembly();
             try {
-                stageA.await();
+                stageA.await(); // every process signals to the others that it has completed stage A and waits for all other processes to complete.
             }
             catch (InterruptedException ex) {
                 return;
@@ -71,7 +66,7 @@ class DollFactory {
             // Stage B
             this.painting(doll);
             try {
-                stageB.await();
+                stageB.await(); // every process signals to the others that it has completed stage B and waits for all other processes to complete.
             }
             catch (InterruptedException ex) {
                 return;
@@ -84,7 +79,7 @@ class DollFactory {
             this.qualityControl(doll);
 
             try {
-                stageC.await();
+                stageC.await(); // every process signals to the main process that it has completed stage C.
             }
             catch (InterruptedException ex) {
                 return;

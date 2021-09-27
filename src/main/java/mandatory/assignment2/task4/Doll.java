@@ -1,4 +1,4 @@
-package main.java.mandatory.assignment2.task4;
+package mandatory.assignment2.task4;
 
 public class Doll {
     private int id;

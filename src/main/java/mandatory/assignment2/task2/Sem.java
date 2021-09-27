@@ -1,4 +1,4 @@
-package main.java.mandatory.assignment2.task2;
+package mandatory.assignment2.task2;
 
 public class Sem {
 
@@ -9,13 +9,16 @@ public class Sem {
     }
 
     public synchronized void acquire() throws InterruptedException {
-        if (permits > 0){
-            // TODO: Your solution goes here.
-            permits--;
 
-        } else {
-            // TODO: Your solution goes here.
-            throw new InterruptedException("The resource attempted to be accessed is not available.");
+        boolean executed = false;
+
+        while (!executed) {
+            if (permits > 0){
+                permits--;
+                executed = true;
+            } else {
+                this.wait();
+            }
         }
     }
 
@@ -27,7 +30,7 @@ public class Sem {
     }
 
     public synchronized void release() {
-        // TODO: Your solution goes here.
         permits++;
+        this.notify();
     }
 }
